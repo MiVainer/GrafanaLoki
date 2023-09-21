@@ -1,5 +1,8 @@
 version: '3.9'
 
+networks:
+  loki:
+
 services:
   loki:
     image: grafana/loki:2.2.1
@@ -8,6 +11,8 @@ services:
     volumes:
       - $PWD/loki:/etc/loki
     command: -config.file=/etc/loki/loki-config.yaml
+    networks:
+      - loki
 
 
   promtail:
@@ -18,6 +23,8 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers
       - /var/run/docker.sock:/var/run/docker.sock
     command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+      - loki
 
 
   grafana:
@@ -30,3 +37,5 @@ services:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_DISABLE_LOGIN_FORM=true
+    networks:
+      - loki
