@@ -21,7 +21,7 @@ services:
     volumes:
       - /var/log:/var/log
       - $PWD/promtail:/etc/promtail
-    command: -config.file=/etc/promtail/promtail-config.yml
+    command: -config.file=/etc/promtail/promtail-config.yaml
     networks:
       - loki
 
