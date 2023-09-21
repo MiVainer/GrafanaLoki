@@ -11,7 +11,7 @@ services:
       - "3100:3100"
     volumes:
       - $PWD/loki:/etc/loki
-    command: -config.file=/etc/loki/local-config.yaml
+    command: -config.file=/etc/loki/loki-config.yaml
     networks:
       - loki
 
@@ -21,7 +21,7 @@ services:
     volumes:
       - /var/log:/var/log
       - $PWD/promtail:/etc/promtail
-    command: -config.file=/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/promtail-config.yml
     networks:
       - loki
 
