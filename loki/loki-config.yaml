@@ -9,7 +9,7 @@ ingester:
     enabled: true
     dir: /tmp/wal
   lifecycler:
-    address: 185.86.147.151
+    address: 127.0.0.1
     ring:
       kvstore:
         store: inmemory
@@ -61,7 +61,7 @@ ruler:
     local:
       directory: /tmp/loki/rules
   rule_path: /tmp/loki/rules-temp
-  alertmanager_url: http://185.86.147.151:9093
+  alertmanager_url: http://localhost:9093
   ring:
     kvstore:
       store: inmemory
