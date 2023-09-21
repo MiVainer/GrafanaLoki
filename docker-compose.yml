@@ -1,15 +1,14 @@
-version: "3.9"
+version: '3.9'
 
 services:
   loki:
     image: grafana/loki:2.2.1
     ports:
-      - "3100:3100"
+      - 3100:3100
     volumes:
       - $PWD/loki:/etc/loki
     command: -config.file=/etc/loki/loki-config.yaml
-    depends_on:
-    - promtail
+
 
   promtail:
     image: grafana/promtail:2.2.1
@@ -21,6 +20,10 @@ services:
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "3000:3000"
-    depends_on:
-      - loki
+      - 3000:3000
+    volumes:
+      - $PWD/grafana/grafana.yml:/etc/grafana/provisioning/datasources/grafana.yaml
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
