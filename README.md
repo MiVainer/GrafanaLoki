@@ -1,0 +1,2 @@
+# GrafanaLoki
+Monitoring
