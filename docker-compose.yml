@@ -8,7 +8,8 @@ services:
     volumes:
       - $PWD/loki:/etc/loki
     command: -config.file=/etc/loki/loki-config.yaml
-    depends_on: promtail
+    depends_on:
+    - promtail
 
   promtail:
     image: grafana/promtail:2.2.1
@@ -21,4 +22,5 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
-    depends_on: loki
+    depends_on:
+      - loki
