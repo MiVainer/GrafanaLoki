@@ -15,14 +15,18 @@ services:
     volumes:
       - /var/log:/var/log
       - $PWD/promtail:/etc/promtail
+      - /var/lib/docker/containers:/var/lib/docker/containers
+      - /var/run/docker.sock:/var/run/docker.sock
     command: -config.file=/etc/promtail/promtail-config.yaml
+    depends_on:
+      - loki
 
   grafana:
     image: grafana/grafana:latest
     ports:
       - 3000:3000
     volumes:
-      - $PWD/grafana/grafana.yml:/etc/grafana/provisioning/datasources/grafana.yaml
+      - $PWD/grafana/grafana.yml:/etc/grafana/provisioning/datasources/datasources.yaml
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
