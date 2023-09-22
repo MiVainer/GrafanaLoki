@@ -29,15 +29,14 @@ services:
 
   grafana:
     container_name: grafana
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     volumes:
-      - $PWD/grafana:/etc/grafana/provisioning/datasources
-    command: -config.file=/etc/grafana/provisioning/datasources/datasources.yaml
+      - $PWD/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
     networks:
       - loki
