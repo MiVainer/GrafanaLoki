@@ -35,8 +35,14 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     volumes:
       - $PWD/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - grafana_storage:/var/lib/grafana
+      - grafana_config:etc/grafana
+
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
     networks:
       - loki
+volumes:
+  grafana_storage:
+  grafana_config:
