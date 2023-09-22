@@ -36,7 +36,7 @@ services:
     volumes:
       - $PWD/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - grafana_storage:/var/lib/grafana
-      - grafana_config:etc/grafana
+      - grafana_config:/etc/grafana
 
     image: grafana/grafana:latest
     ports:
