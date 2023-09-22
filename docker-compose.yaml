@@ -37,7 +37,7 @@ services:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     volumes:
-      - $PWD/grafana:/etc/grafana/provisioning/datasources/datasources.yaml
-
+      - $PWD/grafana:/etc/grafana/provisioning/datasources
+    command: -config.file=/etc/grafana/provisioning/datasources/datasources.yaml
     networks:
       - loki
